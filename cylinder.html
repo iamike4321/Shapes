@@ -5,6 +5,28 @@
     <title>Cylinder Calculations</title>	
 	<link rel="stylesheet" href="css/styles.css">
 	<script>
+        "use strict";
+        window.onload= init;
+        function init() {
+        document.getElementById("shapeForm").onsubmit=calculate;
+        }
+        function calculate() {
+            var volume;
+            var area;
+            var radius=document.getElementById("radius");
+            var height=document.getElementById("height");
+            //Make sure of the following:
+            //1. Referenced objects exist
+            //2. Referenced objects contain a valid value
+            if (radius && (radius.value>0)&& height &&(height.value>0)){
+                //Calculations
+                volume=Math.PI*Math.pow(radius.value,2)*height.value;
+                area=(Math.PI*(radius.value,2)*2)+(Math.PI*radius.value*height*2);
+                
+            }
+    
+        }
+
         function formClear() {
             document.getElementById("radius").value="0";
             document.getElementById("height").value="0";
@@ -12,6 +34,7 @@
             document.getElementById("area").value="";
             
         }
+
         
 	</script>
 </head>
