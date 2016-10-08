@@ -8,7 +8,7 @@
         "use strict";
         window.onload= init;
         function init() {
-        document.getElementById("shapeForm").onsubmit=calculate;
+            document.getElementById("shapeForm").onsubmit=calculate;
         }
         function calculate() {
             var volume;
@@ -18,25 +18,42 @@
             //Make sure of the following:
             //1. Referenced objects exist
             //2. Referenced objects contain a valid value
-            if (radius && (radius.value>0)&& height &&(height.value>0)){
+            if (radius && (radius.value>0)
+                    && height &&(parseFloat(height.value>0)) {
+                alert(parseFloat(radius.value));
                 //Calculations
+                radius.value=parseFloat(radius.value);
                 volume=Math.PI*Math.pow(radius.value,2)*height.value;
-                area=(Math.PI*(radius.value,2)*2)+(Math.PI*radius.value*height*2);
-                
-            }
-    
+                area=(Math.PI*Math.pow(radius.value, 2)*2)+(Math.PI*radius.value*height.value*2);
+                //format 4 dec places
+                volume=volume.toFixed(4);
+                area=area.toFixed(4);
+                //output volume and area
+                document.getElementById("volume").value=volume;
+                document.getElementById("area").value=area;
+
+            }//if radius/height valid
+            else {
+                //radius/height not valid
+                if (parseFloat(radius.value == 0 || isNaN(radius.value)))radius.value="enter # > 0";
+                if (parseFloat(height.value == 0 || isNaN(height.value)))height.value="enter # > 0";}
+
+            //prevent from re submit
+            return false;
+            //all funct on client side no need to send to server
         }
+        //end function
 
         function formClear() {
             document.getElementById("radius").value="0";
             document.getElementById("height").value="0";
             document.getElementById("volume").value="";
             document.getElementById("area").value="";
-            
+
         }
 
-        
-	</script>
+
+    </script>
 </head>
 <body>
 	<h2>3-D Shape Calculator</h2>
