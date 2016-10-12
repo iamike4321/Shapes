@@ -2,71 +2,88 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cylinder Calculations</title>	
-	<link rel="stylesheet" href="css/styles.css">
-	<script>
+    <title>Cylinder Calculations</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
         "use strict";
-        window.onload= init;
+        window.onload = init;
         function init() {
-            document.getElementById("shapeForm").onsubmit=calculate;
+            //event listener:
+            document.getElementById
+            ("shapeForm").onsubmit = calculate;
+        }
+        function myFx(argument) {
+            //this fx serves no purpous
+            alert(argument);
         }
         function calculate() {
+            //Output variables
             var volume;
             var area;
-            var radius=document.getElementById("radius");
-            var height=document.getElementById("height");
+            //Input variables
+            var radius = document.getElementById("radius");
+            var height = document.getElementById("height");
             //Make sure of the following:
-            //1. Referenced objects exist
-            //2. Referenced objects contain a valid value
-            if (radius && (radius.value>0)
-                    && height &&(parseFloat(height.value>0)) {
-                alert(parseFloat(radius.value));
-                //Calculations
-                radius.value=parseFloat(radius.value);
-                volume=Math.PI*Math.pow(radius.value,2)*height.value;
-                area=(Math.PI*Math.pow(radius.value, 2)*2)+(Math.PI*radius.value*height.value*2);
-                //format 4 dec places
-                volume=volume.toFixed(4);
-                area=area.toFixed(4);
-                //output volume and area
-                document.getElementById("volume").value=volume;
-                document.getElementById("area").value=area;
+            //1. Referenced objects exists
+            if (radius&&height){
 
+            }
+            //2. Referenced object contain a valid value
+
+            if(radius && (parseFloat(radius.value) > 0)
+                    && height && (parseFloat(height.value) > 0)) {
+                radius.value = parseFloat(radius.value);
+                height.value = parseFloat(height.value);
+                //Calculate:
+                volume =
+                        Math.PI *
+                        Math.pow(radius.value, 2) * height.value;area =  (Math.PI * Math.pow(radius.value, 2) * 2)
+                        +
+                        (Math.PI * radius.value * height.value * 2);
+                //Format to 4 decimal places
+                volume = volume.toFixed(4);
+                area = area.toFixed(4);
+                //Output volume and area
+                document.getElementById("volume").value = volume;
+                document.getElementById("area").value = area;
             }//if radius/height valid
             else {
-                //radius/height not valid
-                if (parseFloat(radius.value == 0 || isNaN(radius.value)))radius.value="enter # > 0";
-                if (parseFloat(height.value == 0 || isNaN(height.value)))height.value="enter # > 0";}
-
-            //prevent from re submit
+                //radius/height NOT valid
+                if (parseFloat(radius.value) == 0 ||
+                        isNaN(parseFloat(radius.value))) {
+                    radius.value = "Enter # > 0";
+                }
+                if (parseFloat(height.value) == 0 ||
+                        isNaN(parseFloat(height.value))) {
+                    height.value = "Enter # > 0";
+                }
+            }//else
+            //Prevent form resubmission:
             return false;
-            //all funct on client side no need to send to server
-        }
-        //end function
-
+            //All functionality is on the
+            //client side.
+            //No need to send to server.
+        }//end function
         function formClear() {
-            document.getElementById("radius").value="0";
-            document.getElementById("height").value="0";
-            document.getElementById("volume").value="";
-            document.getElementById("area").value="";
-
+            document.getElementById("radius").value = "0";
+            document.getElementById("height").value = "0";
+            document.getElementById("volume").value = "";
+            document.getElementById("area").value = "";
         }
-
-
     </script>
 </head>
 <body>
-	<h2>3-D Shape Calculator</h2>
-	<h3>Enter details below to calculate metrics:</h3>
+<h2>3-D Shape Calculator</h2>
+<h3>Enter details below to calculate metrics:</h3>
 
-	<section>
-	<form method="get"
-          id="shapeForm">
-		<ul id="navlist">
-			<li><a href="sphere.html"><img src="img/PurpleSphere.jpg" class="shape"></a></li>
-			<li><a href="cylinder.html"><img src="img/PurpleCylinder.gif" class="shape"></a></li>
-			<li><a href="cone.html"><img src="img/PurpleCone.jpg" class="shape"></a></li>
-		</ul>
+<section>
+    <form method="get"
+          id="shapeForm" onsubmit="calculate">
+        <ul id="navlist">
+            <li><a href="sphere.html"><img src="img/PurpleSphere.jpg" class="shape"></a></li>
+            <li><a href="cylinder.html"><img src="img/PurpleCylinder.gif" class="shape"></a></li>
+            <li><a href="cone.html"><img src="img/PurpleCone.jpg" class="shape"></a></li>
+        </ul>
         <fieldset>
             <h3>Cylinders:</h3>
             <table>
@@ -75,7 +92,7 @@
                     <td><input type="text"
                                id="radius"
                                name="radius"
-                                required>
+                               required>
                     </td>
                 </tr>
                 <tr>
@@ -94,9 +111,9 @@
                                class="readonly"
                                readonly>
                     </td>
-					<td>
-						V&nbsp;=&nbsp;&Pi;&nbsp;r<sup>2</sup>&nbsp;h
-					</td>
+                    <td>
+                        V&nbsp;=&nbsp;&Pi;&nbsp;r<sup>2</sup>&nbsp;h
+                    </td>
                 </tr>
                 <tr>
                     <td><label for="area">Surface Area:</label></td>
@@ -104,36 +121,36 @@
                                id="area"
                                name="area"
                                class="readonly"
-							   readonly>
+                               readonly>
                     </td>
-					<td>
-						A&nbsp;=&nbsp;2&nbsp;&Pi;&nbsp;r<sup>2</sup>&nbsp;+&nbsp;2&nbsp;&Pi;&nbsp;r&nbsp;h
-					</td>
+                    <td>
+                        A&nbsp;=&nbsp;2&nbsp;&Pi;&nbsp;r<sup>2</sup>&nbsp;+&nbsp;2&nbsp;&Pi;&nbsp;r&nbsp;h
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
                         <input  type="submit"
                                 class="sbmt"
-								id="Submit"
+                                id="submit"
                                 value="Calculate"
-								>
+                        >
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <input  type="submit"
+                        <input  type="button"
                                 class="sbmt"
-                                id="Clear"
+                                id="clear"
                                 value="Clear"
-								onclick="formClear()"
-								>
+                                onclick="formClear()"
+                        >
                     </td>
                 </tr>
             </table>
         </fieldset>
-    </form>	
-	</section>
+    </form>
+</section>
 </body>
 </html>
