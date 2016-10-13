@@ -2,27 +2,89 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sphere Calculations</title>	
-	<link rel="stylesheet" href="css/styles.css">	
-	<script>
-	</script>
+    <title>Sphere Calculations</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script>
+    </script>
 </head>
 <body>
-	<h2>3-D Shape Calculator</h2>
-	<h3>Enter details below to calculate metrics:</h3>
-
-	<section>
-	<form method="get"
+<h2>3-D Shape Calculator</h2>
+<h3>Enter details below to calculate metrics:</h3>
+<section>
+    <form method="get"
           id="shapeForm"
-		  >
-		<ul id="navlist">
-			<li><a href="sphere.html"><img src="img/PurpleSphere.jpg" class="shape"></a></li>
-			<li><a href="cylinder.html"><img src="img/PurpleCylinder.gif" class="shape"></a></li>
-			<li><a href="cone.html"><img src="img/PurpleCone.jpg" class="shape"></a></li>
-		</ul>
-		<script> 
-		</script>
-		<fieldset>
+    >
+        <ul id="navlist">
+            <li><a href="sphere.html"><img src="img/PurpleSphere.jpg" class="shape"></a></li>
+            <li><a href="cylinder.html"><img src="img/PurpleCylinder.gif" class="shape"></a></li>
+            <li><a href="cone.html"><img src="img/PurpleCone.jpg" class="shape"></a></li>
+        </ul>
+        <script>
+            "use strict";
+            window.onload = init;
+            function init() {
+                //event listener:
+                document.getElementById("shapeForm").onsubmit = calculate;
+            }
+            function myFx(argument) {
+                //this function server no great purpose
+                alert(argument);
+            }
+            function calculate() {
+                var volume;
+                var area;
+                //input variables
+                var radius = document.getElementById("radius");
+                //Make sure of the following:
+                //1. Referenced objects exists
+                if (radius) {
+                    //2. Referenced object contains a valid value
+                    //if(radius && (parseFloat(radius.value) > 0)&& height && (parseFloat(height.value) > 0)){
+                    //radius.value = parseFloat(radius.value);
+                    //height.value = parseFloat(height.value);
+                    if (isNaN(radius.value) ||
+                            (parseFloat(radius.value) <= 0)) {
+                        radius.value = "Enter # > 0";
+                        //Exit the function
+                        return false;
+                    }
+                }
+                //calculate:
+                volume =  4/3 * Math.PI *
+                        Math.pow( radius.value, 3);
+                area = (
+                        4*Math.PI*
+                        Math.pow (radius.value, 2)
+                );
+                //Format to 4 decimal places
+                volume = volume.toFixed(4);
+                area = area.toFixed(4);
+                //Output volume and area
+                document.getElementById("volume").value = volume;
+                document.getElementById("area").value = area;
+                return false;
+            }//if radius/height valid
+            /*else{
+             alert("else");
+             //radius/height NOT valid
+             if (parseFloat(radius.value) == 0 || isNaN(parseFloat(radius.value))){
+             radius.value = "Enter # > 0";
+             }
+             if (parseFloat(height.value) == 0 || isNaN(parseFloat(height.value))){
+             height.value = "Enter # > 0";
+             }
+             }//else*/
+            //Prevent form resubmission
+            //All functionality is on the client side
+            //No need to send to sever
+            //end function
+            function formClear() {
+                document.getElementById("radius").value = "0";
+                document.getElementById("volume").value = "";
+                document.getElementById("area").value = "";
+            }
+        </script>
+        <fieldset>
             <h3>Spheres:</h3>
             <table>
                 <tr>
@@ -30,7 +92,7 @@
                     <td><input type="text"
                                id="radius"
                                name="radius"
-                                required>
+                               required>
                     </td>
                 </tr>
                 <tr>
@@ -41,9 +103,9 @@
                                class="readonly"
                                readonly>
                     </td>
-					<td>
-						V&nbsp;=&nbsp;4&#8260;3&nbsp;&Pi;&nbsp;r<sup>3</sup>
-					</td>
+                    <td>
+                        V&nbsp;=&nbsp;4&#8260;3&nbsp;&Pi;&nbsp;r<sup>3</sup>
+                    </td>
                 </tr>
                 <tr>
                     <td><label for="area">Surface Area:</label></td>
@@ -53,9 +115,9 @@
                                class="readonly"
                                readonly>
                     </td>
-					<td>
-						A&nbsp;=&nbsp;4&nbsp;&Pi;&nbsp;r&nbsp;<sup>2</sup>
-					</td>
+                    <td>
+                        A&nbsp;=&nbsp;4&nbsp;&Pi;&nbsp;r&nbsp;<sup>2</sup>
+                    </td>
                 </tr>
                 <tr>
                     <td></td>
@@ -63,24 +125,24 @@
                         <input  type="submit"
                                 class="sbmt"
                                 id="sphereSubmit"
-                                value="Calculate";
-								>
+                                value="Calculate"
+                        >
                     </td>
                 </tr>
                 <tr>
                     <td></td>
                     <td>
-                        <input  type="submit"
+                        <input  type="button"
                                 class="sbmt"
                                 id="sphereClear"
                                 value="Clear"
-								onclick="formClear();";
-								>
+                                onclick="formClear();"
+                        >
                     </td>
                 </tr>
-			</table>
-			</fieldset>
-		</form>
-	</section>
+            </table>
+        </fieldset>
+    </form>
+</section>
 </body>
 </html>
