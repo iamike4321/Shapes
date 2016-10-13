@@ -52,10 +52,8 @@
                 //calculate:
                 volume =  4/3 * Math.PI *
                         Math.pow( radius.value, 3);
-                area = (
-                        4*Math.PI*
-                        Math.pow (radius.value, 2)
-                );
+                area = (4*Math.PI*
+                        Math.pow (radius.value, 2));
                 //Format to 4 decimal places
                 volume = volume.toFixed(4);
                 area = area.toFixed(4);
@@ -81,8 +79,7 @@
             function formClear() {
                 document.getElementById("radius").value = "0";
                 document.getElementById("volume").value = "";
-                document.getElementById("area").value = "";
-            }
+                document.getElementById("area").value = "";}
         </script>
         <fieldset>
             <h3>Spheres:</h3>
